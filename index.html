@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SegarGrocer - Premium Grocery & Fresh Ingredients</title>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,24 +14,6 @@
     <style>
         body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #FDFBF7; }
     </style>
-
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            green: '#2C5E3B',
-                            lightGreen: '#E8F0EA',
-                            orange: '#FF6B35',
-                            dark: '#1A2E22',
-                            cream: '#FDFBF7'
-                        }
-                    }
-                }
-            }
-        }
-    </script>
 </head>
 <body x-data="groceryApp()">
 
@@ -97,7 +79,7 @@
 
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             <template x-for="product in filteredProducts()" :key="product.id">
-                <div class="bg-white rounded-2xl border border-gray-100 overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 flex flex-direction-col justify-between group">
+                <div class="bg-white rounded-2xl border border-gray-100 overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between group">
                     <div class="relative pt-[100%] overflow-hidden bg-gray-50">
                         <img :src="product.image" :alt="product.name" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                         <span class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm text-[#2C5E3B] text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full shadow-sm" x-text="product.category"></span>
@@ -129,7 +111,7 @@
     </main>
 
     <div x-show="cartOpen" class="fixed inset-0 z-50 overflow-hidden" style="display: none;">
-        <div class="absolute inset-0 bg-black/40 backdrop-blur-xs transition-opacity" @click="cartOpen = false"></div>
+        <div class="absolute inset-0 bg-black/40 backdrop-blur-sm transition-opacity" @click="cartOpen = false"></div>
         <div class="absolute inset-y-0 right-0 max-w-full flex pl-10">
             <div class="w-screen max-w-md bg-white flex flex-col shadow-2xl">
                 <div class="p-6 border-b border-gray-100 flex items-center justify-between">
@@ -178,31 +160,28 @@
             return {
                 cartOpen: false,
                 activeCategory: 'Semua',
-                // Daftar kategori dinamis
                 categories: ['Semua', 'Sayuran', 'Buah', 'Daging', 'Seafood', 'Bumbu Dapur', 'Minuman', 'Sembako', 'Frozen Food'],
                 cart: [],
-                // Data Produk lengkap dengan tambahan Jus, Kopi, Minyak, Tepung, dll.
                 products: [
-                    { id: 1, name: 'Brokoli Organik Segar', category: 'Sayuran', price: 18500, unit: 'per 500 gram', rating: 4.9, image: 'https://images.unsplash.com/photo-1584270354949-c26b0d5b4a0c?auto=format&fit=crop&q=80&w=500' },
-                    { id: 2, name: 'Apel Fuji Premium Red', category: 'Buah', price: 32000, unit: 'per 1 Kg', rating: 4.8, image: 'https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?auto=format&fit=crop&q=80&w=500' },
-                    { id: 3, name: 'Daging Sapi Sirloin Segar', category: 'Daging', price: 85000, unit: 'per 500 gram', rating: 5.0, image: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&q=80&w=500' },
-                    { id: 4, name: 'Udang Vaname Laut Premium', category: 'Seafood', price: 64000, unit: 'per 500 gram', rating: 4.7, image: 'https://images.unsplash.com/photo-1565680018434-b513d5e5fd47?auto=format&fit=crop&q=80&w=500' },
-                    { id: 5, name: 'Bawang Merah & Putih Mix', category: 'Bumbu Dapur', price: 22000, unit: 'per 500 gram', rating: 4.9, image: 'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&q=80&w=500' },
-                    { id: 6, name: 'Susu UHT Full Cream Cair', category: 'Minuman', price: 19500, unit: '1 Liter', rating: 4.8, image: 'https://images.unsplash.com/photo-1563636619-e9143da7973b?auto=format&fit=crop&q=80&w=500' },
+                    { id: 1, name: 'Brokoli Organik Segar', category: 'Sayuran', price: 18500, unit: 'per 500 gram', rating: 4.9, image: 'https://images.unsplash.com/photo-1584270354949-c26b0d5b4a0c?auto=format&fit=crop&q=80&w=600' },
+                    { id: 2, name: 'Apel Fuji Premium Red', category: 'Buah', price: 32000, unit: 'per 1 Kg', rating: 4.8, image: 'https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?auto=format&fit=crop&q=80&w=600' },
+                    { id: 3, name: 'Daging Sapi Sirloin Segar', category: 'Daging', price: 85000, unit: 'per 500 gram', rating: 5.0, image: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&q=80&w=600' },
+                    { id: 4, name: 'Udang Vaname Laut Premium', category: 'Seafood', price: 64000, unit: 'per 500 gram', rating: 4.7, image: 'https://images.unsplash.com/photo-1565680018434-b513d5e5fd47?auto=format&fit=crop&q=80&w=600' },
+                    { id: 5, name: 'Bawang Merah & Putih Mix', category: 'Bumbu Dapur', price: 22000, unit: 'per 500 gram', rating: 4.9, image: 'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&q=80&w=600' },
+                    { id: 6, name: 'Susu UHT Full Cream Cair', category: 'Minuman', price: 19500, unit: '1 Liter', rating: 4.8, image: 'https://images.unsplash.com/photo-1563636619-e9143da7973b?auto=format&fit=crop&q=80&w=600' },
                     
-                    // --- PRODUK MINUMAN BARU ---
-                    { id: 9, name: 'Jus Jeruk Segar Organik', category: 'Minuman', price: 24500, unit: 'Botol 500 ml', rating: 4.9, image: 'https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?auto=format&fit=crop&q=80&w=500' },
-                    { id: 10, name: 'Kopi Susu Gula Aren Premium', category: 'Minuman', price: 28000, unit: 'Botol 1 Liter', rating: 4.8, image: 'https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&q=80&w=500' },
+                    // --- FOTO MINUMAN SEGAR HD ---
+                    { id: 9, name: 'Jus Jeruk Segar Organik', category: 'Minuman', price: 24500, unit: 'Botol 500 ml', rating: 4.9, image: 'https://images.unsplash.com/photo-1600271886742-f049cd451bba?auto=format&fit=crop&q=80&w=600' },
+                    { id: 10, name: 'Kopi Susu Gula Aren Premium', category: 'Minuman', price: 28000, unit: 'Botol 1 Liter', rating: 4.8, image: 'https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&q=80&w=600' },
                     
-                    // --- PRODUK SEMBAKO BARU ---
-                    { id: 8, name: 'Beras Premium Setra Ramos', category: 'Sembako', price: 78000, unit: 'Kantong 5 Kg', rating: 5.0, image: 'https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&q=80&w=500' },
-                    { id: 11, name: 'Minyak Goreng Kelapa Sawit', category: 'Sembako', price: 34500, unit: 'Pouch 2 Liter', rating: 4.7, image: 'https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?auto=format&fit=crop&q=80&w=500' },
-                    { id: 12, name: 'Tepung Terigu Serbaguna', category: 'Sembako', price: 14000, unit: 'Kemasan 1 Kg', rating: 4.6, image: 'https://images.unsplash.com/photo-1574316071802-0d684efa7bf5?auto=format&fit=crop&q=80&w=500' },
+                    // --- FOTO SEMBAKO HD ---
+                    { id: 8, name: 'Beras Premium Setra Ramos', category: 'Sembako', price: 78000, unit: 'Kantong 5 Kg', rating: 5.0, image: 'https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&q=80&w=600' },
+                    { id: 11, name: 'Minyak Goreng Kelapa Sawit', category: 'Sembako', price: 34500, unit: 'Pouch 2 Liter', rating: 4.7, image: 'https://images.unsplash.com/photo-1620677368158-32a26fb6da3d?auto=format&fit=crop&q=80&w=600' },
+                    { id: 12, name: 'Tepung Terigu Serbaguna', category: 'Sembako', price: 14000, unit: 'Kemasan 1 Kg', rating: 4.6, image: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&q=80&w=600' },
                     
-                    { id: 7, name: 'Premium Chicken Nugget', category: 'Frozen Food', price: 42000, unit: 'Pack 500 gram', rating: 4.6, image: 'https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&fit=crop&q=80&w=500' }
+                    { id: 7, name: 'Premium Chicken Nugget', category: 'Frozen Food', price: 42000, unit: 'Pack 500 gram', rating: 4.6, image: 'https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&fit=crop&q=80&w=600' }
                 ],
                 
-                // LOGIKA UTAMA NYARING KATEGORI
                 filteredProducts() {
                     if (this.activeCategory === 'Semua') {
                         return this.products;
